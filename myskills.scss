@@ -1,0 +1,432 @@
+* {
+    box-sizing: border-box;
+}
+
+$animationSpeed: 250ms;
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    background: black;
+}
+
+header {
+    width: 100%;
+    background-color: black;
+    position: fixed;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #00ff00;
+    a {
+        text-decoration: none;
+        h1 {
+            font-size: 35px;
+            font-family: monospace;
+            color: #00ff00;
+            padding: 0 10px;
+            display: inline-block;
+            &:hover {
+                color: #00ff00;
+            }
+        }
+    }
+    .nav {
+        width: 15%;
+        display: flex;
+        #hamburger {
+            display: none;
+        }
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 10px;
+            width: 65px;
+            height: 60px;
+            background-color: black;
+            padding: 5px;
+            z-index: 1;
+            &:hover>span {
+                background-color: #00ff00;
+            }
+            &:hover>span::before {
+                background-color: #00ff00;
+            }
+            &:hover>span::after {
+                background-color: #00ff00;
+            }
+            span,
+            span::before,
+            span::after {
+                content: '';
+                height: 10px;
+                width: 60px;
+                background-color: green;
+                display: block;
+            }
+            span {
+                transform: translateY(20px);
+                transition: $animationSpeed background-color;
+            }
+            span::before {
+                position: absolute;
+                // transform: translateY(-20px);
+                bottom: 20px;
+                transition: $animationSpeed transform, $animationSpeed $animationSpeed bottom, $animationSpeed background-color;
+            }
+            span::after {
+                position: absolute;
+                // transform: translateY(20px);
+                top: 20px;
+                transition: $animationSpeed transform, $animationSpeed $animationSpeed top, $animationSpeed background-color;
+            }
+        }
+        .menu {
+            background-color: black;
+            position: absolute;
+            top: -300px;
+            right: -70%;
+            width: 100%;
+            height: auto;
+            transition-duration: $animationSpeed;
+            transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            ul {
+                border: 1px solid #00ff00;
+                margin: 0;
+                padding: 0;
+                text-decoration: none;
+                li {
+                    list-style: none;
+                    a {
+                        font-family: monospace;
+                        display: block;
+                        width: 100%;
+                        padding: 20px 5px;
+                        font-size: 25px;
+                        color: #00ff00;
+                        &:hover {
+                            background-color: #00ff00;
+                            color: black;
+                            font-weight: bold;
+                        }
+                    }
+                }
+                /* 
+                    list-style: none;
+                    &:hover {
+                        background-color: #00ff00;
+                        color: black;
+                        font-weight: bold;
+                    }*/
+            }
+        }
+    }
+    #hamburger:checked+.hamburger>span {
+        background-color: transparent;
+        &::before {
+            transform: rotate(45deg);
+            bottom: 0;
+            transition: $animationSpeed $animationSpeed transform, $animationSpeed bottom;
+        }
+        &::after {
+            transform: rotate(-45deg);
+            top: 0;
+            transition: $animationSpeed $animationSpeed transform, $animationSpeed top;
+        }
+    }
+    #hamburger:checked~.menu {
+        top: 90px;
+    }
+}
+
+.container {
+    .space-place {
+        height: 150px;
+    }
+    .matrix {
+        display: flex;
+        height: 400px;
+        margin: 10px 20px;
+        border: 1px solid green;
+        .bullets {
+            flex-grow: 3;
+            .bul1 {
+                width: 100%;
+                margin: 5px 0;
+                &::after {
+                    content: "";
+                    display: inline-block;
+                    margin: 20px 0 20px 40px;
+                    position: relative;
+                    height: 10px;
+                    width: 30px;
+                    border-radius: 0% 50% 50% 0%;
+                    background-color: #00ff00;
+                    animation: matrix-bullet-action 3s cubic-bezier(.46, .45, .28, .25) both;
+                }
+                @keyframes matrix-bullet-action {
+                    0% {
+                        right: 0%;
+                    }
+                    100% {
+                        right: -85%;
+                    }
+                }
+                &::before {
+                    content: "HTML";
+                    font-size: 20px;
+                    display: inline-block;
+                    position: absolute;
+                    text-align: center;
+                    padding: 8px 0 0 0;
+                    font-weight: bolder;
+                    width: 60%;
+                    height: 30px;
+                    background-color: #00ff00;
+                    left: -60%;
+                    animation: matrix-information-action 3s cubic-bezier(.46, .45, .28, .25) both;
+                    animation-delay: 1s;
+                }
+                @keyframes matrix-information-action {
+                    0% {
+                        left: -60%;
+                    }
+                    100% {
+                        left: 5%;
+                    }
+                }
+            }
+            .bul2 {
+                width: 100%;
+                margin: 5px 0;
+                &::after {
+                    content: "";
+                    display: inline-block;
+                    margin: 20px 0 20px 40px;
+                    position: relative;
+                    height: 10px;
+                    width: 30px;
+                    border-radius: 0% 50% 50% 0%;
+                    background-color: #00ff00;
+                    animation: matrix-bullet-action 3s cubic-bezier(.46, .45, .28, .25) both;
+                }
+                @keyframes matrix-bullet-action {
+                    0% {
+                        right: 0%;
+                    }
+                    100% {
+                        right: -85%;
+                    }
+                }
+                &::before {
+                    content: "CSS";
+                    font-size: 20px;
+                    text-align: center;
+                    padding: 8px 0 0 0;
+                    font-weight: bolder;
+                    display: inline-block;
+                    position: absolute;
+                    width: 60%;
+                    height: 30px;
+                    background-color: #00ff00;
+                    left: -60%;
+                    animation: matrix-information-action 3s cubic-bezier(.46, .45, .28, .25) both;
+                    animation-delay: 1s;
+                }
+                @keyframes matrix-information-action {
+                    0% {
+                        left: -60%;
+                    }
+                    100% {
+                        left: 5%;
+                    }
+                }
+            }
+            .bul3 {
+                width: 100%;
+                margin: 5px 0;
+                &::after {
+                    content: "";
+                    display: inline-block;
+                    margin: 20px 0 20px 40px;
+                    position: relative;
+                    height: 10px;
+                    width: 30px;
+                    border-radius: 0% 50% 50% 0%;
+                    background-color: #00ff00;
+                    animation: matrix-bullet-action 3s cubic-bezier(.46, .45, .28, .25) both;
+                }
+                @keyframes matrix-bullet-action {
+                    0% {
+                        right: 0%;
+                    }
+                    100% {
+                        right: -85%;
+                    }
+                }
+                &::before {
+                    font-size: 20px;
+                    text-align: center;
+                    padding: 8px 0 0 0;
+                    font-weight: bolder;
+                    content: "JavaScript";
+                    display: inline-block;
+                    position: absolute;
+                    width: 60%;
+                    height: 30px;
+                    background-color: #00ff00;
+                    left: -60%;
+                    animation: matrix-information-action 3s cubic-bezier(.46, .45, .28, .25) both;
+                    animation-delay: 1s;
+                }
+                @keyframes matrix-information-action {
+                    0% {
+                        left: -60%;
+                    }
+                    100% {
+                        left: 5%;
+                    }
+                }
+            }
+            .bul4 {
+                width: 100%;
+                margin: 5px 0;
+                &::after {
+                    content: "";
+                    display: inline-block;
+                    margin: 20px 0 20px 40px;
+                    position: relative;
+                    height: 10px;
+                    width: 30px;
+                    border-radius: 0% 50% 50% 0%;
+                    background-color: #00ff00;
+                    animation: matrix-bullet-action 3s cubic-bezier(.46, .45, .28, .25) both;
+                }
+                @keyframes matrix-bullet-action {
+                    0% {
+                        right: 0%;
+                    }
+                    100% {
+                        right: -85%;
+                    }
+                }
+                &::before {
+                    content: "SASS-SCSS";
+                    font-size: 20px;
+                    text-align: center;
+                    padding: 8px 0 0 0;
+                    font-weight: bolder;
+                    display: inline-block;
+                    position: absolute;
+                    width: 60%;
+                    height: 30px;
+                    background-color: #00ff00;
+                    left: -60%;
+                    animation: matrix-information-action 3s cubic-bezier(.46, .45, .28, .25) both;
+                    animation-delay: 1s;
+                }
+                @keyframes matrix-information-action {
+                    0% {
+                        left: -60%;
+                    }
+                    100% {
+                        left: 5%;
+                    }
+                }
+            }
+            .bul5 {
+                width: 100%;
+                margin: 5px 0;
+                &::after {
+                    content: "";
+                    display: inline-block;
+                    margin: 20px 0 20px 40px;
+                    position: relative;
+                    height: 10px;
+                    width: 30px;
+                    border-radius: 0% 50% 50% 0%;
+                    background-color: #00ff00;
+                    animation: matrix-bullet-action 3s cubic-bezier(.46, .45, .28, .25) both;
+                }
+                @keyframes matrix-bullet-action {
+                    0% {
+                        right: 0%;
+                    }
+                    100% {
+                        right: -85%;
+                    }
+                }
+                &::before {
+                    content: "jQery";
+                    font-size: 20px;
+                    text-align: center;
+                    padding: 8px 0 0 0;
+                    font-weight: bolder;
+                    display: inline-block;
+                    position: absolute;
+                    width: 60%;
+                    height: 30px;
+                    background-color: #00ff00;
+                    left: -60%;
+                    animation: matrix-information-action 3s cubic-bezier(.46, .45, .28, .25) both;
+                    animation-delay: 1s;
+                }
+                @keyframes matrix-information-action {
+                    0% {
+                        left: -60%;
+                    }
+                    100% {
+                        left: 5%;
+                    }
+                }
+            }
+        }
+        .neo {
+            flex-grow: 1;
+            background-image: url(/image/neo.jpeg);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: left;
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    body {
+        header {
+            .nav {
+                width: 8%;
+                .menu {
+                    top: 0;
+                    right: -100%;
+                    width: 700px;
+                    ul {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        li {
+                            display: block;
+                            width: 100%;
+                            a {
+                                text-align: center;
+                                width: 100%;
+                                font-size: 22px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #hamburger:checked~.menu {
+        right: 20%;
+        top: 50px;
+    }
+}
