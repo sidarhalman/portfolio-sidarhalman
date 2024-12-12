@@ -46,7 +46,7 @@
              flex-direction: column;
              justify-content: space-between;
              align-items: center;
-             margin: 0 10px;
+             margin: 0 -10px;
              width: 65px;
              height: 60px;
              background-color: black;
@@ -91,7 +91,7 @@
              background-color: black;
              position: absolute;
              top: -300px;
-             right: -70%;
+             right: -60%;
              width: 100%;
              height: auto;
              transition-duration: $animationSpeed;
